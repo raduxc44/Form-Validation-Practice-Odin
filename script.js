@@ -6,7 +6,7 @@ class validationObj {
 
     }
 
-    inputFormatCheck(event) {
+    inputCheck(event) {
 
         event.preventDefault()
 
@@ -15,38 +15,22 @@ class validationObj {
         let emailString = email.value.toString();
         let emailArr = emailString.split('');
 
-        if(emailArr.includes('@')) {emailCheck(emailArr)};
+        
 
-        function emailCheck(emailArr) {
+        (function emailCheck() {
 
-            let emailError = document.getElementsByClassName('email-error-field')[0];
-            let errorMessages = [];
+            console.log('a')
+            let emailMessage = document.getElementsByClassName('email-error-field')[0];
             let emailToStr = emailArr.join('')
-    
-            if(emailToStr === '' || emailToStr == null) {
-    
-                errorMessages.push('You need to enter an email adress!')
-    
-            }
-            else if(emailArr[emailArr.length - 4] !== '.') {
-    
-                errorMessages.push('That is not a valid e-mail adress.')
-    
-            }
 
-            emailError.innerHTML = `<p>${errorMessages}</p>`
+            if(emailArr.includes ('@') && emailArr.includes ('.') && (emailArr.indexOf('.') - emailArr.indexOf('@') >= 2)) {
+    
+                email.classList.add('valid');
+                emailMessage.innerHTML = `<p>You've entered a valid email adress!</p>`
 
-            console.log(`${errorMessages} - 1`)
-    
-            console.log(`emailerror : ${emailError.innerHTML}`)
-    
-            if(errorMessages.length === 0) {
-    
-                // Code for valid input
-    
             }
-    
-        }
+            return emailToStr;
+        })();
 
 
  
@@ -57,5 +41,5 @@ let validator = new validationObj;
 let form = document.getElementById('form')
 let email = document.getElementById('email')
 let submitButt = document.getElementById('submit')
-form.addEventListener('submit', validator.inputFormatCheck)
+form.addEventListener('submit', validator.inputCheck)
 
