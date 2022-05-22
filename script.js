@@ -21,7 +21,7 @@ class validationObj {
             let emailToStr = emailArr.join('')
 
             if(emailArr.includes ('@') && emailArr.includes ('.') && 
-              (emailArr.indexOf('.') - emailArr.indexOf('@') >= 2) && ((emailArr.length - 1) - emailArr.indexOf('.') > 2)) {
+              (emailArr.indexOf('.') - emailArr.indexOf('@') >= 2) && ((emailArr.length - 1) - emailArr.indexOf('.') == 3 )) {
     
                 email.classList.add('valid');
                 email.classList.remove('invalid');
