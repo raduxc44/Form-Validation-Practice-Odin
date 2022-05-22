@@ -14,14 +14,20 @@
         <h1>Form dummy</h1>
         <div id="error"></div>
         <form novalidate id="form" method="get">
-            <div>
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email">
+            <div class="email form-div">
+                <div class="input-with-check">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email">
+                    <img class="validCheck" src="check-pic.jpg" alt="Validation check icon" width="25px" height="25px">
+                </div>
                 <div class="email-error-field"></div>
             </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" name="pass" id="pass">
+            <div class="pass form-div">
+                <div class="input-with-check">
+                    <label for="password">Password:</label>
+                    <input type="password" name="pass" id="pass">
+                    <img class="validCheck" src="check-pic.jpg" alt="Validation check icon" width="25px" height="25px">
+                </div>
             </div>
             <button type="submit" id="submit">Submit</button>
         </form>
