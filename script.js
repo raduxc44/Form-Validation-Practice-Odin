@@ -18,7 +18,7 @@ class validationObj {
 
             let emailString = email.value.toString();
             let emailArr = emailString.split('');
-            let emailMessage = document.getElementsByClassName('email-error-field')[0];
+            let emailMessage = document.getElementsByClassName('error-field')[0];
     
             if(email.value.length == 0) {
                 
@@ -57,6 +57,29 @@ class validationObj {
             return emailToStr;
         
         }})();
+        (function countryCheck() {
+
+            let countryInput = document.getElementById('country');
+            let countryMessage = document.getElementsByClassName('error-field')[1];
+            console.log(countryMessage)
+            if(countryInput.value === 'Pick a country') {
+
+                validCheck[1].classList.remove('show')
+                countryInput.classList.remove('valid');
+                countryInput.classList.add('invalid');
+                if(countryMessage) {countryMessage.innerHTML = `<p>This is not a valid email adress.</p>`};
+            
+            } 
+            else if(countryInput.value != 'Pick a country') {
+
+                validCheck[1].classList.add('show')
+                countryInput.classList.remove('invalid');
+                if(countryMessage) {countryMessage.remove}
+
+            }
+
+
+        })();
     }
 }
 
@@ -65,3 +88,6 @@ let form = document.getElementById('form')
 let email = document.getElementById('email')
 let submitButt = document.getElementById('submit')
 email.addEventListener('change', validator.inputCheck)
+country.addEventListener('blur', validator.inputCheck)
+let errorMsgArr = document.getElementsByClassName('error-field')
+console.log(errorMsgArr)
