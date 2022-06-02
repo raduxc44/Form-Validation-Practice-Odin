@@ -13,12 +13,24 @@ class validationObj {
         // Initial variable declarations
 
         let validCheck = document.getElementsByClassName('validCheck');
-        let emailMessage = document.getElementsByClassName('error-field')[0];
+
         let emailInput = document.getElementById('email');
         let countryInput = document.getElementById('country');
+        let zipInput = document.getElementById('zip');
+        let passInput = document.getElementById('pass')
+        let confirmInput = document.getElementById('passconf')
+
+        let emailMessage = document.getElementsByClassName('error-field')[0];
+        let countryMessage = document.getElementsByClassName('error-field')[1];
+        let zipMessage = document.getElementsByClassName('error-field')[2];
+        let passMessage = document.getElementsByClassName('error-field')[3];
+        let confirmMessage = document.getElementsByClassName('error-field')[4];
 
         emailInput.addEventListener('change', emailCheck);
         countryInput.addEventListener('blur', countryCheck);
+        //zipInput.addEventListener('change', )
+        passInput.addEventListener('change', passCheck);
+        //confirmInput.addEventListener('change', )
 
         //Email check
 
@@ -75,30 +87,27 @@ class validationObj {
         
             
         }}
+
+        //Country check
+
         function countryCheck() {
 
             
-            let countryMessage = document.getElementsByClassName('error-field')[1];
             
-            if(countryMessage == `<p>You did not select a valid country!</p>`) {
-
-                validCheck[1].classList.remove('show');
-                countryMessage.innerHTML = '';
-
-            }
             
-            else if(countryInput.value === 'Pick a country' ){
+            // Invalid input functionality
 
-            
+            if(countryInput.value === 'Pick a country' ){
+
                 validCheck[1].classList.remove('show')
                 countryInput.classList.remove('valid');
                 countryInput.classList.add('invalid');
-                countryMessage.innerHTML = `<p>You did not select a valid country!</p>`;
-                
-                
-                
+                countryMessage.innerHTML = `<p>You did not select a valid country!</p>`;                
             
             } 
+
+            // Valid input functionality
+
             else if(countryInput.value != 'Pick a country' && emailMessage.innerHTML != `<p>This is not a valid email adress.</p>`) {
 
                 validCheck[1].classList.add('show')
@@ -106,26 +115,38 @@ class validationObj {
                 countryMessage.innerHTML = '';
                 console.log(countryInput.value)
 
-            }
+            } 
+        };
+        // Zipcode check *soon*
+        let countryArr = [];
+
+        // Password check 
+
+        function passCheck() {
 
             
-        };
+            
+
+        }
+
     }
 }
-
 let validator = new validationObj;
 let form = document.getElementById('form')
 window.addEventListener('load', (validator.inputCheck))
 let submitButt = document.getElementById('submit')
 
 
-let errorMsgArr = document.getElementsByClassName('error-field')
+
 
 
 class Country {
 
     constructor(name, zipFormat)
 
-    {}
+    {
+        this.name = name;
+        this.zipFormat = zipFormat;
+    }
 
 }
