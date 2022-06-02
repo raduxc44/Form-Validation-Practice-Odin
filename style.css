@@ -5,17 +5,29 @@ body {
 }
 form {
     display: flex;
-    align-items: flex-end;
+    align-items: baseline;
     flex-direction: column;
+    width: 500px;
 }
 .form-div {
     display: flex;
+    margin: 10px 0 10px 120px;
     align-items: center;
+    max-width: fit-content;
     flex-direction: column;
-    margin: 20px;
 }
 button {
     align-self: center;
+}
+.error-field {
+    font-size: 15px;
+    height: 17px;
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+}
+.error-field p {
+    margin-top: 10px
 }
 .invalid {
     border: 2px solid red;
