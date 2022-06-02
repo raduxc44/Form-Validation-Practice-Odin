@@ -10,84 +10,122 @@ class validationObj {
 
         event.preventDefault();
 
+        // Initial variable declarations
+
         let validCheck = document.getElementsByClassName('validCheck');
+        let emailMessage = document.getElementsByClassName('error-field')[0];
+        let emailInput = document.getElementById('email');
+        let countryInput = document.getElementById('country');
+
+        emailInput.addEventListener('change', emailCheck);
+        countryInput.addEventListener('blur', countryCheck);
 
         //Email check
 
-        (function emailCheck() {
+        function emailCheck() {
 
-            let emailString = email.value.toString();
+            
+            let emailString = emailInput.value.toString();
             let emailArr = emailString.split('');
-            let emailMessage = document.getElementsByClassName('error-field')[0];
+            
     
-            if(email.value.length == 0) {
+            if(emailInput.value.length == 0) {
                 
-                // If the input field is empty, the input field returns to default
+                // If the input field is empty, the input text box returns to default
 
-                if(emailMessage) {emailMessage.remove()};
-                email.classList.remove('invalid');
-                email.classList.remove('valid');
+                if(emailMessage) {emailMessage.innerHTML = ''};
+                emailInput.classList.remove('invalid');
+                emailInput.classList.remove('valid');
                 validCheck[0].classList.remove('show')
 
             }
 
-            else if (email.value.length > 0) {
-            
+            else if (emailInput.value.length > 0) {
+                
+                // If an input exist, the function checks for the key characters
+                
                 let emailVerifiesChar = emailArr.includes ('@') && emailArr.includes ('.');
                 let emailIndexDiff = emailArr.indexOf('.') - emailArr.indexOf('@');
                 let emailExtension = (emailArr.length - 1) - emailArr.indexOf('.');
 
             if(emailVerifiesChar && emailIndexDiff >= 2 && emailExtension == 3) {
     
+                // Valid input functionality
+
                 validCheck[0].classList.add('show')
-                email.classList.add('valid');
-                email.classList.remove('invalid');
-                if(emailMessage){emailMessage.innerHTML = `<p>You've entered a valid email adress!</p>`};
+                emailInput.classList.add('valid');
+                emailInput.classList.remove('invalid');
+                emailMessage.innerHTML = '';
 
             } else {
 
+                // Invalid input functionality
+
                 validCheck[0].classList.remove('show')
-                email.classList.remove('valid');
-                email.classList.add('invalid');
-                if(emailMessage) {emailMessage.innerHTML = `<p>This is not a valid email adress.</p>`};
+                emailInput.classList.remove('valid');
+                emailInput.classList.add('invalid');
+                emailMessage.innerHTML = `<p>This is not a valid email adress.</p>`;
 
             }
+
+                // Returns to email back to its original form for future back-end usage
 
             let emailToStr = emailArr.join('')
             return emailToStr;
         
-        }})();
-        (function countryCheck() {
+            
+        }}
+        function countryCheck() {
 
-            let countryInput = document.getElementById('country');
+            
             let countryMessage = document.getElementsByClassName('error-field')[1];
-            console.log(countryMessage)
-            if(countryInput.value === 'Pick a country') {
+            
+            if(countryMessage == `<p>You did not select a valid country!</p>`) {
 
+                validCheck[1].classList.remove('show');
+                countryMessage.innerHTML = '';
+
+            }
+            
+            else if(countryInput.value === 'Pick a country' ){
+
+            
                 validCheck[1].classList.remove('show')
                 countryInput.classList.remove('valid');
                 countryInput.classList.add('invalid');
-                if(countryMessage) {countryMessage.innerHTML = `<p>This is not a valid email adress.</p>`};
+                countryMessage.innerHTML = `<p>You did not select a valid country!</p>`;
+                
+                
+                
             
             } 
-            else if(countryInput.value != 'Pick a country') {
+            else if(countryInput.value != 'Pick a country' && emailMessage.innerHTML != `<p>This is not a valid email adress.</p>`) {
 
                 validCheck[1].classList.add('show')
                 countryInput.classList.remove('invalid');
-                if(countryMessage) {countryMessage.remove}
+                countryMessage.innerHTML = '';
+                console.log(countryInput.value)
 
             }
 
-
-        })();
+            
+        };
     }
 }
 
 let validator = new validationObj;
 let form = document.getElementById('form')
-let email = document.getElementById('email')
+window.addEventListener('load', (validator.inputCheck))
 let submitButt = document.getElementById('submit')
-email.addEventListener('change', validator.inputCheck)
-country.addEventListener('blur', validator.inputCheck)
+
+
 let errorMsgArr = document.getElementsByClassName('error-field')
-console.log(errorMsgArr)
+
+
+class Country {
+
+    constructor(name, zipFormat)
+
+    {}
+
+}
