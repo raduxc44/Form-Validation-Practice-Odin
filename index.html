@@ -26,7 +26,7 @@
                 <div class="input-with-check">
                     <label for="country">Country:</label>
                     <select id="country" name="country">
-                        <option value="Pick a country:">Pick a country</option>
+                        <option value="Pick a country">Pick a country</option>
                         <option value="Afganistan">Afghanistan</option>
                         <option value="Albania">Albania</option>
                         <option value="Algeria">Algeria</option>
@@ -278,12 +278,29 @@
                 </div>
                 <div class="error-field"></div>
             </div>
+            <div class="zipcode form-div">
+                <div class="input-with-check">
+                    <label for="zipcode">Zipcode:</label>
+                    <input type="text" id="zip">
+                    <img class="validCheck" src="check-pic.jpg" alt="Validation check icon" width="25px" height="25px">
+                </div>
+                <div class="error-field"></div>
+            </div>
             <div class="pass form-div">
                 <div class="input-with-check">
                     <label for="password">Password:</label>
                     <input type="password" name="pass" id="pass">
                     <img class="validCheck" src="check-pic.jpg" alt="Validation check icon" width="25px" height="25px">
                 </div>
+                <div class="error-field"></div>
+            </div>
+            <div class="passconf form-div">
+                <div class="input-with-check">
+                    <label for="passconf">Confirmation:</label>
+                    <input type="password" name="passconf" id="passconf">
+                    <img class="validCheck" src="check-pic.jpg" alt="Validation check icon" width="25px" height="25px">
+                </div>
+                <div class="error-field"></div>
             </div>
             <button type="submit" id="submit">Submit</button>
         </form>
