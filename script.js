@@ -118,7 +118,7 @@ class validationObj {
             } 
         };
         // Zipcode check *soon*
-        let countryArr = [];
+        
 
         // Password check 
 
@@ -150,3 +150,48 @@ class Country {
     }
 
 }
+
+let countryArr = [];
+
+
+function countryPusher (obj) {
+
+    countryArr.push(obj)
+
+}
+countryPusher(new Country ('Afghanistan', "^\\d{4}$"));
+countryPusher(new Country ('Albania', '\d{4}'));
+countryPusher(new Country ('American Samoa', '\d{5}'));
+countryPusher(new Country ('Andorra', '(?:AD)(\d{3})'));
+countryPusher(new Country ('Antigua & Barbuda', '\d{5}'));
+countryPusher(new Country ('Argentina', '([A-Z]\d{4}[A-Z]{3})|([A-Z]\d{4})'));
+countryPusher(new Country ('Armenia', '(\d{4})|(\d{6})'));
+countryPusher(new Country ('Aruba', 'STRNG_LTN_EXT_255'));
+countryPusher(new Country ('Australia', '\d{4}'));
+countryPusher(new Country ('Austria', '\d{4}'));
+countryPusher(new Country ('Azerbaijan', '(AZ) (\d{4})'));
+countryPusher(new Country ('Bahamas', 'STRNG_LTN_EXT_255'));
+countryPusher(new Country ('Bahrain', '\d{3}\d?'));
+countryPusher(new Country ('Bangladesh', '\d{4}'));
+countryPusher(new Country ('Barbados', '(?:BB)(\d{5})'));
+countryPusher(new Country ('Belarus', '\d{6}'));
+countryPusher(new Country ('Belgium', '\d{4}'));
+countryPusher(new Country ('Belize', 'STRNG_LTN_EXT_255'));
+countryPusher(new Country ('Benin', 'STRNG_LTN_EXT_255'));
+countryPusher(new Country ('Bermuda', '[A-Z]{2} \d{2}'));
+countryPusher(new Country ('Bhutan', '\d{5}'));
+countryPusher(new Country ('Bolivia', 'STRNG_LTN_EXT_255'));
+countryPusher(new Country ('Bonaire', 'STRNG_LTN_EXT_255'));
+countryPusher(new Country ('Bosnia & Herzegovina', '\d{5}'));
+countryPusher(new Country ('Botswana', 'STRNG_LTN_EXT_255'));
+countryPusher(new Country ('Brazil', '[0-9]{5}-[0-9]{3}'));
+countryPusher(new Country ('Brunei', '[A-Z]{2}\d{4}'));
+countryPusher(new Country ('Bulgaria', "^\\d{4}$"));
+countryPusher(new Country ('Burkina Faso', 'STRNG_LTN_EXT_255'));
+countryPusher(new Country ('Burundi', 'STRNG_LTN_EXT_255'));
+countryPusher(new Country ('Cambodia', '\d{5}   '));
+countryPusher(new Country ('Cameroon', 'STRNG_LTN_EXT_255'));
+countryPusher(new Country ('Canada', 'STRNG_LTN_EXT_255'));
+countryPusher(new Country ('Cape Verde', '^\\d{4}$'));
+
+console.log(countryArr)
