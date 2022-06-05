@@ -453,11 +453,6 @@ class validationObj {
 
             // Valid input functionality
 
-            console.log(numberCheck)
-            console.log(symbolCheck)
-            console.log(capitalCheck)
-            console.log(lengthCheck)
-
             if(symbolCheck && capitalCheck && lengthCheck && numberCheck) {
 
                 validCheck[3].classList.add('show')
