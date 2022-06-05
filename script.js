@@ -30,7 +30,7 @@ class validationObj {
         countryInput.addEventListener('blur', countryCheck);
         zipInput.addEventListener('change', zipCheck)
         passInput.addEventListener('change', passCheck);
-        //confirmInput.addEventListener('change', )
+        confirmInput.addEventListener('change', passConfirmCheck)
 
         //Email check
 
@@ -366,7 +366,6 @@ class validationObj {
                 validCheck[1].classList.add('show')
                 countryInput.classList.remove('invalid');
                 countryMessage.innerHTML = '';
-                console.log(countryInput.value)
 
             } 
         };
@@ -382,11 +381,7 @@ class validationObj {
                     // Valid input functionality
 
                     let zipValue = countryArr[i].zipFormat
-                    console.log(zipValue)
-                    console.log(zipInput.value)
-
                     const ok = zipValue.exec(zipInput.value)
-                    console.log(ok)
                     
 
                     if(ok) {
@@ -420,11 +415,97 @@ class validationObj {
 
         function passCheck() {
 
+            let symbolCheck;
+            let lengthCheck;
+            let numberCheck;
+            let capitalCheck;
+
             
-            
+
+            // Symbol check
+
+            if(passInput.value.includes('!') || passInput.value.includes('?') || passInput.value.includes('.') || 
+                passInput.value.includes('$') || passInput.value.includes('#') || passInput.value.includes('%') ||
+                passInput.value.includes('&') || passInput.value.includes('*') || passInput.value.includes('~')){
+
+                symbolCheck = true;
+
+            } else {symbolCheck = false};
+
+            // Capital check
+
+            let regexCapital = /^[A-Z]*/;
+            console.log(regexCapital.exec(passInput.value))
+            if(regexCapital.exec(passInput.value)) {capitalCheck = true} else {capitalCheck = false}
+
+            // Length check
+
+            if(passInput.value.length > 7 && passInput.value.length < 21) {
+
+                lengthCheck = true;
+
+            } else {lengthCheck = false}
+
+            // Number check
+
+            let regexNr = /\d/;
+            if(regexNr.exec(passInput.value)) {numberCheck = true} else {numberCheck = false}
+
+            // Valid input functionality
+
+            console.log(numberCheck)
+            console.log(symbolCheck)
+            console.log(capitalCheck)
+            console.log(lengthCheck)
+
+            if(symbolCheck && capitalCheck && lengthCheck && numberCheck) {
+
+                validCheck[3].classList.add('show')
+                passInput.classList.remove('invalid');
+                passMessage.innerHTML = '';
+
+            }
+
+            // Invalid input functionality
+
+            else {
+
+                validCheck[3].classList.remove('show')
+                passInput.classList.remove('valid');
+                passInput.classList.add('invalid');
+                passMessage.innerHTML = '<p>Your password must be 8 - 20 characters long and must contain a number, a symbol and a capital letter!'
+
+            }
 
         }
 
+        // Pass confirm check
+
+        function passConfirmCheck () {
+
+            // Valid input functionality
+
+            if(confirmInput.value === passInput.value) {
+
+                validCheck[4].classList.add('show')
+                confirmInput.classList.remove('invalid');
+                console.log('a')
+                confirmMessage.innerHTML = '';
+
+            }
+
+            //Invalid input functionality
+
+            else if(confirmInput.value != passInput.value) {
+
+                validCheck[4].classList.remove('show')
+                confirmInput.classList.remove('valid');
+                confirmInput.classList.add('invalid');
+                confirmMessage.innerHTML = '<p>Your passwords must match!</p>'
+
+            }
+
+        }
     }
 }
 let validator = new validationObj;
