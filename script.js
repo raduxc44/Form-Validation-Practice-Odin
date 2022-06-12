@@ -26,11 +26,24 @@ class validationObj {
         let passMessage = document.getElementsByClassName('error-field')[3];
         let confirmMessage = document.getElementsByClassName('error-field')[4];
 
+        function eventCreator (input, interaction, func) {
+
+            input.addEventListener(interaction, func);
+
+        }
+
+        eventCreator(emailInput, 'change', emailCheck);
+        eventCreator(countryInput, 'blur', countryCheck);
+        eventCreator(zipInput, 'change', zipCheck);
+        eventCreator(passInput, 'change', passCheck);
+        eventCreator(confirmInput, 'change', passConfirmCheck);
+
+        /*
         emailInput.addEventListener('change', emailCheck);
         countryInput.addEventListener('blur', countryCheck);
         zipInput.addEventListener('change', zipCheck)
         passInput.addEventListener('change', passCheck);
-        confirmInput.addEventListener('change', passConfirmCheck)
+        confirmInput.addEventListener('change', passConfirmCheck)*/
 
         //Email check
 
@@ -91,21 +104,27 @@ class validationObj {
 
         class Country {
 
-            constructor(name, zipFormat)
+            constructor(name, regex) {
         
-            {
                 this.name = name;
-                this.zipFormat = zipFormat;
+                this.regex = regex;
+        
             }
         
-        }        
+        }
 
-        
-            
+        let countryArr = [];            
             
         (function countryPusher (arr) {
             
-            for(let i = 0; i < arr.length; i++) {
+            for(let i = 0; i < countryExt.length; i++) {
+
+                let country =  new Country (countryExt[i][0], countryExt[i][1])
+                countryArr.push(country)
+  
+        
+            }
+            for(let i = 0; i < countryArr.length; i++) {
             
                 let countryMenu = document.getElementById('country');
                 let htmlCountryOption = document.createElement('option');
@@ -146,7 +165,7 @@ class validationObj {
             } 
         };
         // Zipcode check
-
+        console.log(countryArr)
         function zipCheck() {
 
             
@@ -156,8 +175,8 @@ class validationObj {
 
                     // Valid input functionality
 
-                    let zipValue = countryArr[i].zipFormat
-                    const ok = zipValue.exec(zipInput.value)
+                    let zipValue = countryArr[i].regex;
+                    const ok = zipValue.exec(zipInput.value);
                     
 
                     if(ok) {
